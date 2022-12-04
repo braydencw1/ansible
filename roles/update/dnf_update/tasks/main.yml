@@ -1,0 +1,5 @@
+- name: "DNF upgrade"
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+  become: yes

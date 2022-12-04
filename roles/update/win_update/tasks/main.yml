@@ -1,0 +1,4 @@
+- name: Install all updates Windows Updates
+  ansible.windows.win_updates:
+    category_names: '*'
+    reboot: no

@@ -1,0 +1,13 @@
+- name: "Template Certs"
+  ansible.builtin.template:
+    src: files/Isengard-Ca.crt
+    dest: /etc/pki/ca-trust/source/anchors/Isengard-Ca.crt
+    owner: root
+    group: root
+    mode: '0751'
+  become: yes
+
+- name: "Run Reload"
+  ansible.builtin.shell:
+    cmd: "sudo update-ca-trust"
+  become: yes

@@ -1,0 +1,14 @@
+- name: "Create C:\\temp"
+  ansible.windows.win_file:
+    path: C:\Temp
+    state: directory
+
+- name: "Template Certs"
+  ansible.windows.win_template:
+    src: files/Isengard-Ca.crt
+    dest: C:\Temp\Isengard-Ca.crt
+
+- name: Load Template
+  ansible.windows.win_certificate_store:
+    path: C:\Temp\Isengard-Ca.crt
+    state: present

@@ -1,0 +1,4 @@
+- name: "Certs"
+  hosts: all
+  roles:
+    -  ../roles/sec/certs

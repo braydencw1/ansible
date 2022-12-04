@@ -1,0 +1,4 @@
+- name: "Update Rohan & Gondor"
+  ansible.builtin.shell:
+    cmd: apt update -y && apt dist-upgrade -y
+  become: yes

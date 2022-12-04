@@ -1,0 +1,39 @@
+# - name: Update BNAS Container Images
+#   hosts: unraid
+#   roles: 
+#     - ../roles/update/bnas_docker
+
+- name: "Apt Upgrade for Pis"
+  ignore_unreachable: yes
+  hosts: pis, kube
+  roles:
+  -  ../roles/update/apt_update
+
+- hosts: gm, fedora, runners, rhel
+  ignore_unreachable: yes
+  roles:
+  -  ../roles/update/dnf_update
+
+### Should Always be on ###
+- hosts: proxmox
+  roles:
+  - ../roles/update/proxmox_update
+
+### Should Always be on ###
+- hosts: bpi
+  roles:
+  -  ../roles/update/pihole_update
+
+- name: Update Windows
+  ignore_unreachable: yes
+  hosts: bwindows
+  vars:
+    ansible_connection: ssh
+    ansible_shell_type: cmd
+  roles: 
+    - ../roles/update/win_update
+
+- hosts: arch
+  ignore_unreachable: yes
+  roles:
+  -  ../roles/update/pac_update

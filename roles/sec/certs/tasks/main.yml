@@ -1,0 +1,25 @@
+- ansible.builtin.import_tasks: fedora.yml
+  when: (vm_os == 'fedora')
+
+- ansible.builtin.import_tasks: debian.yml
+  when: (vm_os == 'debian' )
+
+- ansible.builtin.import_tasks: windows.yml
+  when: (vm_os == 'windows')
+
+# - name: Include Fedora
+#   hosts: gm, fedora, runners
+#   ansible.builtin.include_tasks: fedora.yml
+#   vars:
+
+# - name: Include debian
+#   hosts: pis
+#   ansible.builtin.include_tasks: debian.yml
+#   vars:
+
+# - name: Include Windows
+#   hosts: bwindows
+#   ansible.builtin.include_tasks: windows.yml
+#   vars:
+#     ansible_connection: ssh
+#     ansible_shell_type: cmd

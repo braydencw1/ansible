@@ -1,0 +1,20 @@
+- name: "Create /usr/local/share/ca-certificates/extra/"
+  ansible.builtin.file:
+    path: /usr/local/share/ca-certificates/extra/
+    state: directory
+    mode: '0751'
+  become: yes
+
+- name: "Template Certs"
+  ansible.builtin.template:
+    src: files/Isengard-Ca.crt
+    dest: /usr/local/share/ca-certificates/extra/Isengard-Ca.crt
+    owner: root
+    group: root
+    mode: '0751'
+  become: yes
+
+- name: "Run Reload"
+  ansible.builtin.shell:
+    cmd: "sudo update-ca-certificates"
+  become: yes

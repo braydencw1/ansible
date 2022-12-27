@@ -1,8 +1,3 @@
-# - name: Update BNAS Container Images
-#   hosts: unraid
-#   roles: 
-#     - ../roles/update/bnas_docker
-
 - name: "Apt Upgrade for Pis"
   ignore_unreachable: yes
   hosts: pis, kube
@@ -18,6 +13,8 @@
 - hosts: proxmox
   roles:
   - ../roles/update/proxmox_update
+  - ../roles/maintenance/sub-notification
+  - ../roles/maintenance/dark
 
 ### Should Always be on ###
 - hosts: bpi

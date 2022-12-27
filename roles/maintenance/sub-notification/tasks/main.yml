@@ -1,0 +1,10 @@
+- name: Replace Subscription Message
+  ansible.builtin.replace:
+    path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+    regexp: '			Ext\.Msg\.show\({'
+    replace: '			void({ //Ext.Msg.show({'
+
+- name: Restart pveproxy service
+  ansible.builtin.systemd:
+    state: restarted
+    name: pveproxy.service

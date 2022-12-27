@@ -1,0 +1,7 @@
+- name: Replace Subscription Message
+  ansible.builtin.shell: bash PVEDiscordDark.sh install
+
+- name: Restart pveproxy service
+  ansible.builtin.systemd:
+    state: restarted
+    name: pveproxy.service

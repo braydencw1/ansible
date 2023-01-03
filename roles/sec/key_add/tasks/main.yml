@@ -1,0 +1,5 @@
+- name: Set New Authorized Key
+  ansible.posix.authorized_key:
+    user: "{{ ansible_user }}"
+    state: present
+    key: "{{ lookup('file', '/home/user/.ssh/id_rsa.pub') }}"

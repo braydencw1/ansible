@@ -1,0 +1,5 @@
+- name: Remove Previous Authorized Key
+  ansible.posix.authorized_key:
+    user: "{{ ansible_user }}"
+    state: absent
+    key: "{{ lookup('file', '/home/user/.ssh/legacy/id_rsa.pub') }}"
